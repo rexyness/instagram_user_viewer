@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:instagram_user_viewer/core/constants.dart';
-import 'package:instagram_user_viewer/core/failure.dart';
+import 'package:instagram_user_viewer/core/widgets/primary_button.dart';
+import 'package:instagram_user_viewer/features/user_viewer/result/result_screen.dart';
 import 'package:instagram_user_viewer/features/user_viewer/user_viewer_controller.dart';
 import 'package:instagram_user_viewer/theme/palette.dart';
 
@@ -14,6 +13,10 @@ class UserViewerScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Instagram User Viewer'),
+        centerTitle: true,
+      ),
       body: Center(
         child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -21,8 +24,8 @@ class UserViewerScreen extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
-                  onSubmitted: (value) async {
-                    ref.read(userViewerControllerProvider.notifier).getProfile(value);
+                  onChanged: (value) async {
+                    ref.read(userViewerControllerProvider.notifier).setUsername(value);
                   },
                   style: textTheme.bodyText1!.copyWith(color: Palette.almostBlack),
                   decoration: InputDecoration(
@@ -34,18 +37,14 @@ class UserViewerScreen extends ConsumerWidget {
                 const SizedBox(
                   height: kListItemSpacing,
                 ),
-                ref.watch(userViewerControllerProvider).instaProfile.when(
-                      data: (data) => Text(data.bio ?? 'No bio is set'),
-                      error: (e, es, previousData) {
-                        log('Error block inside screen ${e.toString()}');
-                        if (e is Failure) {
-                          return Text(e.message);
-                        } 
-                          return Text(e.toString());
-                        
-                      },
-                      loading: (_) => const CircularProgressIndicator(),
-                    )
+                PrimaryButton(
+                  onPressed: () async {
+                    await ref.read(userViewerControllerProvider.notifier).getProfile();
+                    Navigator.of(context).push(ResultScreen.route());
+                  },
+                  text: 'Submit',
+                  isLoading: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading,
+                ),
               ],
             )),
       ),

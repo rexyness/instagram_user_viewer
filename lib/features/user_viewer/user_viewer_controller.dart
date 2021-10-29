@@ -26,8 +26,11 @@ class UserViewerController extends StateNotifier<UserViewerState> {
     UserViewerState state,
   ) : super(state);
 
-  Future<void> getProfile(String username) async {
+  void setUsername(String username) {
     state = state.copyWith(submittedUsername: username);
+  }
+
+  Future<void> getProfile() async {
     log('${state.submittedUsername} IS SET');
     if (state.submittedUsername.isEmpty) {
       state = state.copyWith(
