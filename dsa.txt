@@ -1,0 +1,35 @@
+GET /eyad_9797/channel/?__a=1 HTTP/1.1
+Host: www.instagram.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+DNT: 1
+Alt-Used: www.instagram.com
+Connection: keep-alive
+Cookie: ig_did=DAF58C76-26A7-4772-B404-B593E743A297; csrftoken=LzQQ4E8aQZO8eiRqJtEW186aLw8InmHs; mid=XokFygALAAHSGTPnDOXXtGa2P2Ru; ds_user_id=44840686583; sessionid=44840686583%3ATSVFLqUeD8LgMU%3A28; shbid="8772\05444840686583\0541667054936:01f7ecbfbb904278a879169863ff7fc26c6444f9dc7347f21ab7156e4f2eb4999d8c8950"; shbts="1635518936\05444840686583\0541667054936:01f7430448dcaacfe7c2db77c9ae050b0266c081d6ae103f396e49c8376e7a2c32a79683"; rur="NAO\05444840686583\0541667075522:01f71871433658f22be23caa1aa74bf1ac6d59b3853eb02d1cbc552b2b50a4c47fb84da8"
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+Cache-Control: max-age=0
+
+curl "https://www.instagram.com/eyad_9797/channel/?__a=1" -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0" -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8" -H "Accept-Language: en-US,en;q=0.5" --compressed -H "DNT: 1" -H "Alt-Used: www.instagram.com" -H "Connection: keep-alive" -H "Cookie: ig_did=DAF58C76-26A7-4772-B404-B593E743A297; csrftoken=LzQQ4E8aQZO8eiRqJtEW186aLw8InmHs; mid=XokFygALAAHSGTPnDOXXtGa2P2Ru; ds_user_id=44840686583; sessionid=44840686583"%"3ATSVFLqUeD8LgMU"%"3A28; shbid=""8772\\05444840686583\\0541667054936:01f7ecbfbb904278a879169863ff7fc26c6444f9dc7347f21ab7156e4f2eb4999d8c8950""; shbts=""1635518936\\05444840686583\\0541667054936:01f7430448dcaacfe7c2db77c9ae050b0266c081d6ae103f396e49c8376e7a2c32a79683""; rur=""NAO\\05444840686583\\0541667075522:01f71871433658f22be23caa1aa74bf1ac6d59b3853eb02d1cbc552b2b50a4c47fb84da8""" -H "Upgrade-Insecure-Requests: 1" -H "Sec-Fetch-Dest: document" -H "Sec-Fetch-Mode: navigate" -H "Sec-Fetch-Site: none" -H "Sec-Fetch-User: ?1" -H "Cache-Control: max-age=0"
+
+GET /eyad_9797/channel/?__a=1 HTTP/1.1
+Host: www.instagram.com
+'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0',
+'Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+'Accept-Language': 'en-US,en;q=0.5',
+'Accept-Encoding': 'gzip, deflate, br',
+'DNT': '1',
+'Alt-Used': 'www.instagram.com',
+'Connection': 'keep-alive',
+'Cookie': 'ig_did=DAF58C76-26A7-4772-B404-B593E743A297; csrftoken=LzQQ4E8aQZO8eiRqJtEW186aLw8InmHs; mid=XokFygALAAHSGTPnDOXXtGa2P2Ru; ds_user_id=44840686583; sessionid=44840686583%3ATSVFLqUeD8LgMU%3A28; shbid="8772\05444840686583\0541667054936:01f7ecbfbb904278a879169863ff7fc26c6444f9dc7347f21ab7156e4f2eb4999d8c8950"; shbts="1635518936\05444840686583\0541667054936:01f7430448dcaacfe7c2db77c9ae050b0266c081d6ae103f396e49c8376e7a2c32a79683"; rur="NAO\05444840686583\0541667075522:01f71871433658f22be23caa1aa74bf1ac6d59b3853eb02d1cbc552b2b50a4c47fb84da8"',
+'Upgrade-Insecure-Requests': '1',
+'Sec-Fetch-Dest': 'document',
+'Sec-Fetch-Mode': 'navigate',
+'Sec-Fetch-Site': 'none',
+'Sec-Fetch-User': '?1',
+'Cache-Control': 'max-age=0',
