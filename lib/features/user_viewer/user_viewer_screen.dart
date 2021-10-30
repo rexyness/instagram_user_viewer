@@ -19,34 +19,36 @@ class UserViewerScreen extends ConsumerWidget {
       ),
       body: Center(
         child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(
-                  onChanged: (value) async {
-                    ref.read(userViewerControllerProvider.notifier).setUsername(value);
-                  },
-                  style: textTheme.bodyText1!.copyWith(color: Palette.almostBlack),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(50)),
-                  ),
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                onChanged: (value) async {
+                  ref.read(userViewerControllerProvider.notifier).setUsername(value);
+                },
+                style: textTheme.bodyText1!.copyWith(color: Palette.almostBlack),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(50)),
                 ),
-                const SizedBox(
-                  height: kListItemSpacing,
-                ),
-                PrimaryButton(
-                  onPressed: () async {
-                    await ref.read(userViewerControllerProvider.notifier).getProfile();
-                    Navigator.of(context).push(ResultScreen.route());
-                  },
-                  text: 'Submit',
-                  isLoading: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading,
-                ),
-              ],
-            )),
+              ),
+              const SizedBox(
+                height: kListItemSpacing,
+              ),
+              PrimaryButton(
+                onPressed: () async {
+                  await ref.read(userViewerControllerProvider.notifier).getProfile();
+                  FocusScope.of(context).unfocus();
+                  Navigator.of(context).push(ResultScreen.route());
+                },
+                text: 'Submit',
+                isLoading: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -18,15 +18,28 @@ class ResultScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(),
       body: ref.watch(userViewerControllerProvider).instaProfile.when(
-            data: (data) => Text(data.bio ?? 'No bio is set'),
+            data: (data) {
+              return Center(
+                  child: Column(
+                children: [
+                  Image.network(
+                    data.profilePicURL ?? '',
+                    fit: BoxFit.fitWidth,
+                  ),
+                  Text(data.bio ?? 'No bio is set'),
+                ],
+              ));
+            },
             error: (e, es, previousData) {
               log('Error block inside screen ${e.toString()}');
               if (e is Failure) {
-                return Text(e.message);
+                return Center(
+                  child: Text(e.message),
+                );
               }
-              return Text(e.toString());
+              return Center(child: Text(e.toString()));
             },
-            loading: (_) => const CircularProgressIndicator(),
+            loading: (_) => const Center(child: CircularProgressIndicator()),
           ),
     );
   }

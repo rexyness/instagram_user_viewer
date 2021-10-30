@@ -7,8 +7,9 @@ import 'package:instagram_user_viewer/core/failure.dart';
 import 'package:instagram_user_viewer/features/user_viewer/user_viewer_service.dart';
 import 'package:instagram_user_viewer/features/user_viewer/user_viewer_state.dart';
 
-final userViewerControllerProvider = StateNotifierProvider<UserViewerController, UserViewerState>((ref) {
+final userViewerControllerProvider = StateNotifierProvider.autoDispose<UserViewerController, UserViewerState>((ref) {
   final userViewerService = ref.watch(userViewerServiceProvider);
+  ref.maintainState = true;
   return UserViewerController(
     userViewerService,
     UserViewerState(
