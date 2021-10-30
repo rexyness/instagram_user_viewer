@@ -53,6 +53,7 @@ class UserViewerScreen extends ConsumerWidget {
                       title: 'An error has occured',
                       type: CoolAlertType.error,
                       text: message,
+                      animType: CoolAlertAnimType.slideInLeft
                     );
                   }, orElse: () {
                     Navigator.of(context).push(ResultScreen.route());
