@@ -1,6 +1,8 @@
+import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:instagram_user_viewer/core/constants.dart';
+import 'package:instagram_user_viewer/core/failure.dart';
 import 'package:instagram_user_viewer/core/widgets/primary_button.dart';
 import 'package:instagram_user_viewer/features/user_viewer/result/result_screen.dart';
 import 'package:instagram_user_viewer/features/user_viewer/user_viewer_controller.dart';
@@ -41,7 +43,20 @@ class UserViewerScreen extends ConsumerWidget {
                 onPressed: () async {
                   await ref.read(userViewerControllerProvider.notifier).getProfile();
                   FocusScope.of(context).unfocus();
-                  Navigator.of(context).push(ResultScreen.route());
+                  ref.watch(userViewerControllerProvider).instaProfile.maybeWhen(error: (e, s, previousData) {
+                    String message = 'something went wrong';
+                    if (e is Failure) {
+                      message = e.message;
+                    }
+                    CoolAlert.show(
+                      context: context,
+                      title: 'An error has occured',
+                      type: CoolAlertType.error,
+                      text: message,
+                    );
+                  }, orElse: () {
+                    Navigator.of(context).push(ResultScreen.route());
+                  });
                 },
                 text: 'Submit',
                 isLoading: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading,
