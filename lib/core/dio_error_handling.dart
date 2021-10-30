@@ -36,7 +36,7 @@ class DioCustomException implements Exception {
       case 400:
         return 'Bad request';
       case 404:
-        return 'The requested resource was not found';
+        return 'The user you requested was not found';
       case 500:
         return 'Internal server error';
       default:
