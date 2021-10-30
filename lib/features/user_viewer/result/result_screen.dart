@@ -34,13 +34,14 @@ class ResultScreen extends ConsumerWidget {
               log('Error block inside screen ${e.toString()}');
               if (e is Failure) {
 
-                return Center(
-                  child: Column(
-                    children: [
-                      Image.asset('assets/images/errorCat.png',fit: BoxFit.cover,),
-                      Text(e.message),
-                    ],
-                  ),
+                return Column(
+                  
+                  children: [
+                    const Spacer(),
+                    Image.asset('assets/images/errorCat.png',fit: BoxFit.cover,),
+                    Text(e.message),
+                    const Spacer(),
+                  ],
                 );
               }
               return Center(child: Text(e.toString()));
