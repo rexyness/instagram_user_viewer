@@ -45,7 +45,7 @@ class UserViewerController extends StateNotifier<UserViewerState> {
     final result = await userViewerService.getProfileByUsername(state.submittedUsername);
     result.when(
       (error) => state = state.copyWith(
-        instaProfile: AsyncValue.error(error.message),
+        instaProfile: AsyncValue.error(error),
       ),
       (success) => state = state.copyWith(
         instaProfile: AsyncValue.data(success),
