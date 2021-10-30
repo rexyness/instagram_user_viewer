@@ -28,7 +28,7 @@ class UserViewerController extends StateNotifier<UserViewerState> {
   ) : super(state);
 
   void setUsername(String username) {
-    state = state.copyWith(submittedUsername: username);
+    state = state.copyWith(submittedUsername: username.trim());
   }
 
   Future<void> getProfile() async {

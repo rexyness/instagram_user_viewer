@@ -22,48 +22,63 @@ class UserViewerScreen extends ConsumerWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                onChanged: (value) async {
-                  ref.read(userViewerControllerProvider.notifier).setUsername(value);
-                },
-                style: textTheme.bodyText1!.copyWith(color: Palette.almostBlack),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(50)),
+          child: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    
+                    TextFormField(
+                    
+                      onChanged: (value) async {
+                        ref.read(userViewerControllerProvider.notifier).setUsername(value);
+                      },
+                      initialValue: ref.watch(userViewerControllerProvider).submittedUsername,
+                      style: textTheme.bodyText1!.copyWith(color: Palette.almostBlack),
+                      
+                      decoration: InputDecoration(
+                        
+                        labelText: "Enter Email",
+                        fillColor: Colors.white,
+                        
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25.0),
+                          borderSide: const BorderSide(
+                          ),
+                        ),
+                        //fillColor: Colors.green
+                      ),
+                    ),
+                    const SizedBox(
+                      height: kListItemSpacing,
+                    ),
+                    PrimaryButton(
+                      onPressed: () async {
+                        await ref.read(userViewerControllerProvider.notifier).getProfile();
+                        FocusScope.of(context).unfocus();
+                        ref.watch(userViewerControllerProvider).instaProfile.maybeWhen(error: (e, s, previousData) {
+                          String message = 'something went wrong';
+                          if (e is Failure) {
+                            message = e.message;
+                          }
+                          CoolAlert.show(
+                              context: context,
+                              title: 'An error has occured',
+                              type: CoolAlertType.error,
+                              text: message,
+                              confirmBtnColor: Palette.red500,
+                              animType: CoolAlertAnimType.slideInLeft);
+                        }, orElse: () {
+                          Navigator.of(context).push(ResultScreen.route());
+                        });
+                      },
+                      text: 'Submit',
+                      isLoading: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading,
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(
-                height: kListItemSpacing,
-              ),
-              PrimaryButton(
-                onPressed: () async {
-                  await ref.read(userViewerControllerProvider.notifier).getProfile();
-                  FocusScope.of(context).unfocus();
-                  ref.watch(userViewerControllerProvider).instaProfile.maybeWhen(error: (e, s, previousData) {
-                    String message = 'something went wrong';
-                    if (e is Failure) {
-                      message = e.message;
-                    }
-                    CoolAlert.show(
-                      context: context,
-                      title: 'An error has occured',
-                      type: CoolAlertType.error,
-                      text: message,
-                      animType: CoolAlertAnimType.slideInLeft
-                    );
-                  }, orElse: () {
-                    Navigator.of(context).push(ResultScreen.route());
-                  });
-                },
-                text: 'Submit',
-                isLoading: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading,
-              ),
-            ],
-          ),
         ),
       ),
     );

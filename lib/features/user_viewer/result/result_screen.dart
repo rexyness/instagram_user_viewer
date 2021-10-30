@@ -16,19 +16,24 @@ class ResultScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(ref.watch(userViewerControllerProvider).instaProfile.value.username ?? ''),
+        centerTitle: true,
+      ),
       body: ref.watch(userViewerControllerProvider).instaProfile.when(
             data: (data) {
-              return Center(
-                  child: Column(
+              return ListView(
+                physics: const BouncingScrollPhysics(),
+
                 children: [
-                  Image.network(
-                    data.profilePicURL ?? '',
-                    fit: BoxFit.fitWidth,
-                  ),
-                  Text(data.bio ?? 'No bio is set'),
+              Image.network(
+                data.profilePicURL ?? '',
+                fit: BoxFit.fitWidth,
+              ),
+              Text(data.bio ?? 'No bio is set'),
+              
                 ],
-              ));
+              );
             },
             error: (e, es, previousData) {
               log('Error block inside screen ${e.toString()}');
