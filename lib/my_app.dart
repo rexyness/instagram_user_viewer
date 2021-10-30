@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Instagram User Viewer',
       theme: CustomTheme.darkTheme(context),
       home: const UserViewerScreen(),
+      
     );
   }
 }
