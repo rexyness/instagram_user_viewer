@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Instagram User Viewer',
-      theme: CustomTheme.darkTheme(context),
+      theme: CustomTheme.lightTheme(context),
       home: const UserViewerScreen(),
       
     );
