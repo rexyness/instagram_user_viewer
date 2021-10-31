@@ -27,6 +27,7 @@ class CustomTheme {
         accentColor: Palette.red500,
       ),
       scaffoldBackgroundColor: Palette.almostBlack,
+      cardTheme: const CardTheme(color: Palette.red500),
       appBarTheme: const AppBarTheme(
         elevation: 0,
         color: Palette.almostBlack,
@@ -64,6 +65,7 @@ class CustomTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       colorScheme: ColorScheme.fromSwatch(
         brightness: Brightness.light,
+        
         primarySwatch: MaterialColor(
           Palette.red500.value,
           const {
@@ -81,9 +83,11 @@ class CustomTheme {
         accentColor: Palette.red500,
       ),
       scaffoldBackgroundColor: Colors.white,
+      cardTheme: const CardTheme(color: Palette.red500),
       appBarTheme: AppBarTheme(
         elevation: 0,
         color: Colors.white,
+        titleTextStyle: Theme.of(context).textTheme.headline6!.copyWith(color: Palette.almostBlack),
         iconTheme: IconTheme.of(context).copyWith(color: Palette.almostBlack)
       ),
       sliderTheme: SliderThemeData(

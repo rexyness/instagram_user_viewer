@@ -91,6 +91,7 @@ class UserViewerRepository {
         isPrivate: profile["is_private"],
         isVerified: profile["is_verified"],
         profilePicURL: profile["profile_pic_url_hd"],
+        fullName: profile["full_name"],
         username: username,
       );
       return userProfile;

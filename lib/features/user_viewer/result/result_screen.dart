@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:instagram_user_viewer/core/constants.dart';
 import 'package:instagram_user_viewer/core/failure.dart';
+import 'package:instagram_user_viewer/features/user_viewer/result/text_card.dart';
 
 import '../user_viewer_controller.dart';
 
@@ -17,7 +19,16 @@ class ResultScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(ref.watch(userViewerControllerProvider).instaProfile.value.username ?? ''),
+        
+        automaticallyImplyLeading: false ,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(ref.watch(userViewerControllerProvider).instaProfile.value.username ?? ''),
+            if(ref.watch(userViewerControllerProvider).instaProfile.value.isVerified ?? false) const SizedBox(width: 8,),
+            if(ref.watch(userViewerControllerProvider).instaProfile.value.isVerified ?? false) const  Icon(Icons.verified , color: Colors.cyan,)
+          ],
+        ),
         centerTitle: true,
       ),
       body: ref.watch(userViewerControllerProvider).instaProfile.when(
@@ -26,12 +37,38 @@ class ResultScreen extends ConsumerWidget {
                 physics: const BouncingScrollPhysics(),
 
                 children: [
-              Image.network(
-                data.profilePicURL ?? '',
-                fit: BoxFit.fitWidth,
-              ),
-              Text(data.bio ?? 'No bio is set'),
-              
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: ClipOval(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: Container(
+                        width: 30,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0), //width of the border
+                          child: ClipOval(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: Container(
+                               // this width forces the container to be a circle
+                              height: 300.0, // this height forces the container to be a circle
+                              child: Image.network(
+                                data.profilePicURL ?? '',
+                                fit: BoxFit.cover,
+                               
+                                isAntiAlias: true,
+                              ),
+                              decoration: kInnerDecoration,
+                            ),
+                          ),
+                        ),
+                        decoration: kGradientBoxDecoration,
+                      ),
+                    ),
+                  ),
+                  if (data.bio?.isNotEmpty ?? false)
+                    TextCard(
+                      title: '${data.fullName}',
+                      desc: data.bio ?? '',
+                    ),
                 ],
               );
             },

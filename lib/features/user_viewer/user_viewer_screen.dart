@@ -8,12 +8,13 @@ import 'package:instagram_user_viewer/features/user_viewer/result/result_screen.
 import 'package:instagram_user_viewer/features/user_viewer/user_viewer_controller.dart';
 import 'package:instagram_user_viewer/theme/palette.dart';
 
+
 class UserViewerScreen extends ConsumerWidget {
   const UserViewerScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Instagram User Viewer'),
@@ -29,27 +30,18 @@ class UserViewerScreen extends ConsumerWidget {
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    
                     TextFormField(
-                    
                       onChanged: (value) async {
                         ref.read(userViewerControllerProvider.notifier).setUsername(value);
                       },
-                      initialValue: ref.watch(userViewerControllerProvider).submittedUsername,
-                      style: textTheme.bodyText1!.copyWith(color: Palette.almostBlack),
                       
-                      decoration: InputDecoration(
-                        
-                        labelText: "Enter Email",
-                        fillColor: Colors.white,
-                        
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
-                          borderSide: const BorderSide(
-                          ),
+                      initialValue: ref.watch(userViewerControllerProvider).submittedUsername,
+                      
+                      decoration: const InputDecoration(
+                          floatingLabelBehavior: FloatingLabelBehavior.auto,
+                          labelText: 'Enter the username here',
+                          border: OutlineInputBorder(),
                         ),
-                        //fillColor: Colors.green
-                      ),
                     ),
                     const SizedBox(
                       height: kListItemSpacing,
@@ -77,6 +69,8 @@ class UserViewerScreen extends ConsumerWidget {
                       text: 'Submit',
                       isLoading: ref.watch(userViewerControllerProvider).instaProfile is AsyncLoading,
                     ),
+                    
+                    
                   ],
                 ),
         ),
