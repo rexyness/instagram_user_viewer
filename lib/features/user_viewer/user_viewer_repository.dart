@@ -5,27 +5,27 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:instagram_public_api/instagram_public_api.dart';
+
 import 'package:instagram_user_viewer/core/dio_error_handling.dart';
 import 'package:instagram_user_viewer/core/failure.dart';
+
+import 'models/insta_profile_data.dart';
 
 final dioProvider = Provider<Dio>((ref) {
   return Dio();
 });
 
-final flutterInstaProvider = Provider<FlutterInsta>((ref) {
-  return FlutterInsta();
-});
+
 
 final userViewerRepositoryProvider = Provider<UserViewerRepository>((ref) {
-  return UserViewerRepository(flutterInsta: ref.watch(flutterInstaProvider), dio: ref.watch(dioProvider));
+  return UserViewerRepository(dio: ref.watch(dioProvider));
 });
 
 class UserViewerRepository {
-  final FlutterInsta flutterInsta;
+  
   final Dio dio;
   UserViewerRepository({
-    required this.flutterInsta,
+    
     required this.dio,
   });
 

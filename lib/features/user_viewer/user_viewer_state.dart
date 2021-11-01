@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:instagram_public_api/models/instaData.dart';
+
+import 'models/insta_profile_data.dart';
+
 
 @immutable
 class UserViewerState {

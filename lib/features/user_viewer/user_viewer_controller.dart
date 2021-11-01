@@ -1,11 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:instagram_public_api/instagram_public_api.dart';
 import 'package:instagram_user_viewer/core/failure.dart';
 
 import 'package:instagram_user_viewer/features/user_viewer/user_viewer_service.dart';
 import 'package:instagram_user_viewer/features/user_viewer/user_viewer_state.dart';
+
+import 'models/insta_profile_data.dart';
 
 final userViewerControllerProvider = StateNotifierProvider.autoDispose<UserViewerController, UserViewerState>((ref) {
   final userViewerService = ref.watch(userViewerServiceProvider);
